@@ -1,0 +1,28 @@
+
+<?php \Laravel\Section::start('content'); ?>
+	<h1>Add New Author</h1>
+
+	<?php if($errors->has()): ?>
+	<ul>
+		<?php echo  $errors->first('name', '<li>:message</li>') ; ?>
+		<?php echo  $errors->first('bio', '<li>:message</li>') ; ?>
+	</ul>
+	<?php endif; ?>
+
+	<?php echo  Form::open('authors/create', 'POST') ; ?>
+
+	<p>
+		<?php echo  Form::label('name', 'Name:') ; ?><br />
+		<?php echo  Form::text('name', Input::old('name')) ; ?>
+	</p>
+
+	<p>
+		<?php echo  Form::label('bio', 'Biography:') ; ?><br />
+		<?php echo  Form::textarea('bio', Input::old('bio')) ; ?>
+	</p>
+
+	<p><?php echo  Form::submit('Add Author') ; ?></p>
+
+	<?php echo  Form::close() ; ?>
+<?php \Laravel\Section::stop(); ?>
+<?php echo view('layouts.default')->with(get_defined_vars())->render(); ?>
